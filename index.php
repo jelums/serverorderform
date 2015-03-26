@@ -47,7 +47,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Etunimi</span>
-            <input type="text" class="form-control" placeholder="Etunimi" aria-describedby="sizing-addon3" id="firstname" name="firstname">
+            <input type="text" class="form-control" placeholder="Etunimi" aria-describedby="sizing-addon3" id="fname" name="fname">
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Sukunimi</span>
-            <input type="text" class="form-control" placeholder="Sukunimi" aria-describedby="sizing-addon3" id="lastname" name="lastname">
+            <input type="text" class="form-control" placeholder="Sukunimi" aria-describedby="sizing-addon3" id="sname" name="sname">
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Opiskelijatunnus</span>
-            <input type="text" class="form-control" placeholder="Opiskelijatunnus" aria-describedby="basic-addon3" id="studentid" name="studentid">
+            <input type="text" class="form-control" placeholder="Opiskelijatunnus" aria-describedby="basic-addon3" id="account" name="account">
             <span class="input-group-addon" id="basic-addon3">@students.oamk.fi</span>
           </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Ryhmätunnus</span>
-            <input type="text" class="form-control" placeholder="Ryhmätunnus" aria-describedby="basic-addon3" id="groupid" name="groupid">
+            <input type="text" class="form-control" placeholder="Ryhmätunnus" aria-describedby="basic-addon3" id="group" name="group">
           </div>
         </div>
       </div>
@@ -88,8 +88,19 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <a href="#ehdot" class="fancybox">Käyttöehdot</a>
           <div id="ehdot" style="display:none;width:300px;">
+            <h3>Ohjeet</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit, mi sed sollicitudin hendrerit, elit elit tristique velit, ut sagittis urna dolor non metus. Fusce viverra lacus sit amet urna porttitor eu mollis massa hendrerit.
+              Liiketalouden yksikköön on hankittu virtuaalipalvelin, josta opiskelija saa palvelintilan käyttöönsä koko koulutuksen ajaksi. Käytännössä tämä tarkoittaa sitä, että opiskelija saa koululta pienen web-hotellin, jota hän voi käyttää opiskelua tukeviin ja edistäviin tarkoituksiin.
+            </p>
+            <p>
+              Lomakkeen lähettämisen jälkeen opiskelijalle luodaan tili palvelimelle ja hän saa sähköposti¬viestin, jossa on tarvittavat tiedot alkuunpääsemiseksi (mm. tunnus, salasana, osoitteita ja ohjeita).
+            </p>
+            <p>
+              Huomaa, että palvelimen epäeettinen, epäasiallinen, hyvien tapojen vastainen tai vastuuton käyttö johtaa siihen, että opiskelijan käyttäjätili suljetaan.
+            </p>
+            <h3>Käyttöehdot</h3>
+            <p>
+              Sitoudun palvelimen vastuulliseen ja asianmukaiseen käyttöön. Vastuullinen käyttö tarkoittaa mm. sitä, että huolehdin käyttäjätilini tiedoista (esim. salasana) siten, että ne pysyvät vain minun tiedossa. Lisäksi huolehdin asentamieni ohjelmistojen päivityksistä ja käytän palvelintilaa vain opiskeluani tukeviin ja edistäviin tarkoituksiin.
             </p>
           </div>
         </div>
@@ -123,5 +134,10 @@
     }
   });
   </script>
+  <!-- jQuery Validate -->
+  <script src="js/formvalidate.js"></script>
+  <script src="js/jquery.validate.js"></script>
+  <script src="js/messages_fi.js"></script>
+  <script src="js/additional-methods.js"></script>
   </body>
 </html>
