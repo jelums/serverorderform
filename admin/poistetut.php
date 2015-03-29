@@ -22,12 +22,12 @@
     <ul class="nav nav-tabs">
       <li role="presentation"><a href="uudet.php">Uudet tilaukset <span class="badge">2</span></a></li>
       <li role="presentation"><a href="hyvaksytyt.php">Hyväksytyt tunnukset</a></li>
-      <li role="presentation" class="active"><a href="hylatyt.php">Hylätyt tunnukset</a></li>
-      <li role="presentation"><a href="poistetut.php">Poistetut tunnukset</a></li>
+      <li role="presentation"><a href="hylatyt.php">Hylätyt tunnukset</a></li>
+      <li role="presentation" class="active"><a href="poistetut.php">Poistetut tunnukset</a></li>
     </ul>
     <br>
-    <div class="panel panel-danger">
-      <div class="panel-heading">Hylätyt tunnukset</div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Poistetut tunnukset</div>
       <!-- Table -->
       <div class="table-responsive">
         <table class="table table-striped">

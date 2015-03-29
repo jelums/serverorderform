@@ -15,6 +15,7 @@ $(document).ready(function(){
       account: {
         required: true,
         pattern:/^[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{4}[0-9]{2}$/,
+        maxlenght: 8,
       },
       group: {
         required: true,
