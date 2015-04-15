@@ -1,15 +1,34 @@
 <!DOCTYPE html>
+
+<?php
+
+require 'includes/functions.php';
+
+$conn = connect($config);
+if ( $conn ) {
+  echo 'Tietokanta yhteys toiminnassa';
+} else {
+  echo 'Virhe yhdistettäessä tietokantaan';
+}
+require 'includes/register.php';
+
+// grab recaptcha library
+// require_once "recaptchalib.php";
+?>
+
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+      <META HTTP-EQUIV='Cache-Control' CONTENT='no-cache'>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/jquery.fancybox.css" type="text/css" media="screen" />
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Virtuaalipalvelimen tilausjärjestelmä</title>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,6 +41,7 @@
   <div class="container">
     <!-- Header -->
     <header>
+      <h1>TESTIVERSIO</h1>
       <!-- OAMK logo -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
@@ -48,27 +68,29 @@
     </div>
     <br>
     </header>
-    <form role="form" id="form">
+    <form role="form" id="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <!-- First name Field -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Etunimi</span>
-            <input type="text" class="form-control" placeholder="Etunimi" aria-describedby="sizing-addon3" id="fname" name="fname">
+            <input type="text" class="form-control" placeholder="Etunimi" aria-describedby="sizing-addon3" id="firstname" name="firstname">
           </div>
+          <p class="help-block"><?php echo $firstnameErr;?></p>
         </div>
       </div>
-      <br>
+
       <!-- Last name Field -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Sukunimi</span>
-            <input type="text" class="form-control" placeholder="Sukunimi" aria-describedby="sizing-addon3" id="sname" name="sname">
+            <input type="text" class="form-control" placeholder="Sukunimi" aria-describedby="sizing-addon3" id="surname" name="surname">
           </div>
+          <p class="help-block"><?php echo $surnameErr;?></p>
         </div>
       </div>
-      <br>
+
       <!-- Studentnumber Field -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
@@ -77,19 +99,21 @@
             <input type="text" class="form-control" placeholder="Opiskelijatunnus" aria-describedby="basic-addon3" id="account" name="account">
             <span class="input-group-addon" id="basic-addon3">@students.oamk.fi</span>
           </div>
+          <p class="help-block"><?php echo $accountErr;?></p>
         </div>
       </div>
-      <br>
+
       <!-- Groupnumber Field -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Ryhmätunnus</span>
-            <input type="text" class="form-control" placeholder="Ryhmätunnus" aria-describedby="basic-addon3" id="group" name="group">
+            <input type="text" class="form-control" placeholder="Ryhmätunnus" aria-describedby="basic-addon3" id="class" name="class">
           </div>
+          <p class="help-block"><?php echo $classErr;?></p>
         </div>
       </div>
-      <br>
+
       <!-- Terms & Conditions -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
@@ -115,17 +139,25 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <p><input type="checkbox" id="agree" name="agree"> Olen lukenut ylläesitetyt ehdot ja sitoudun käyttämään palvelinta niiden mukaisesti</p>
+          <p class="help-block"><?php echo $termsErr;?></p>
         </div>
       </div>
+      <!--<div class="row">
+        <div class="g-recaptcha col-md-2 col-md-offset-4 col-sm-12" data-sitekey="6LcePAATAAAAAGPRWgx90814DTjgt5sXnNbV5WaW"></div>
+      </div> -->
       <!-- Submit button -->
       <div class="row">
         <div class="col-md-2 col-md-offset-4 col-sm-6">
-          <button type="submit" class="btn btn-default">
+          <button type="submit" class="btn btn-default" name="submit" value="submit">
             Lähetä
           </button>
         </div>
       </div>
     </form>
+    <br>
+
+          <?php echo $successMessage;?></h4>
+
     </div>
   <!-- jQuery from Google API -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -141,10 +173,12 @@
     }
   });
   </script>
-  <!-- jQuery Validate -->
+  <!-- jQuery Validate
   <script src="js/formvalidate.js"></script>
   <script src="js/jquery.validate.js"></script>
   <script src="js/messages_fi.js"></script>
-  <script src="js/additional-methods.js"></script>
+  <script src="js/additional-methods.js"></script>-->
+  <!-- Google nocaptcha recaptcha -->
+  <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
   </body>
 </html>

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+    <META HTTP-EQUIV='Cache-Control' CONTENT='no-cache'> 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/jquery.fancybox.css" type="text/css" media="screen" />
@@ -54,7 +56,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">First name</span>
-            <input type="text" class="form-control" placeholder="First name" aria-describedby="sizing-addon3" id="fname" name="fname">
+            <input type="text" class="form-control" placeholder="First name" aria-describedby="sizing-addon3" id="firstname" name="firstname">
           </div>
         </div>
       </div>
@@ -64,7 +66,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Last name</span>
-            <input type="text" class="form-control" placeholder="Last name" aria-describedby="sizing-addon3" id="sname" name="sname">
+            <input type="text" class="form-control" placeholder="Last name" aria-describedby="sizing-addon3" id="surname" name="surname">
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@
         <div class="col-md-4 col-md-offset-4 col-sm-12">
           <div class="input-group input-group-sm">
             <span class="input-group-addon" id="sizing-addon3">Group ID</span>
-            <input type="text" class="form-control" placeholder="Group ID" aria-describedby="basic-addon3" id="group" name="group">
+            <input type="text" class="form-control" placeholder="Group ID" aria-describedby="basic-addon3" id="class" name="class">
           </div>
         </div>
       </div>

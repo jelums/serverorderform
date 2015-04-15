@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+
+<?php
+
+require '../includes/functions.php';
+
+$conn = connect($config);
+
+if ( $conn ) {
+  $user = uudet('user', $conn);
+} else die('Tietokantaan ei saatu yhteytt�');
+
+$laskuri = 'laskuri';
+
+?>
+
 <html>
   <head>
     <meta charset="UTF-8">
@@ -20,92 +35,56 @@
   <body>
   <div class="container">
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="uudet.php">Uudet tilaukset <span class="badge">2</span></a></li>
+      <li role="presentation" class="active"><a href="uudet.php">Uudet tilaukset <span class="badge"><?= $laskuri($user, $conn); ?></span></a></li>
       <li role="presentation"><a href="hyvaksytyt.php">Hyväksytyt tunnukset</a></li>
       <li role="presentation"><a href="hylatyt.php">Hylätyt tunnukset</a></li>
       <li role="presentation"><a href="poistetut.php">Poistetut tunnukset</a></li>
     </ul>
     <br>
     <!-- Application Card -->
-    <div id="card">
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <h4>ORDER ID</h4>
+    <?php foreach($user as $user) : ?>
+      <div id="card">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <h4>ORDER ID <?= $user['id']?></h4>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <strong>Etunimi</strong> Jesse
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <p><strong>Etunimi</strong> <?= $user['firstname']?></p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <p><strong>Sukunimi</strong> <?= $user['surname']?></p>
+          </div>
         </div>
-        <div class="col-md-4 col-sm-12">
-          <strong>Sukunimi</strong> Lumme
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <p><strong>Opiskelijatunnus</strong> <?= $user['account']?></p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <p><strong>Ryhmätunnus</strong> <?= $user['class']?></p>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <strong>Opiskelijatunnus</strong> s3luje00
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <p><strong>Saapunut</strong> <?= $user['date']?></p>
+          </div>
         </div>
-        <div class="col-md-4 col-sm-12">
-          <strong>Ryhmätunnus</strong> TIK3KA
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          24.03.2015 11:14
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-md-2 col-sm-6">
-          <button type="submit" class="btn btn-success">
-            Hyväksy
-          </button>
-          <button type="submit" class="btn btn-danger">
-            Hylkää
-          </button>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div id="card">
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <h4>ORDER ID</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <strong>Etunimi</strong> Jesse
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <strong>Sukunimi</strong> Lumme
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <strong>Opiskelijatunnus</strong> s3luje00
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <strong>Ryhmätunnus</strong> TIK3KA
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          24.03.2015 11:14
+        <br>
+        <div class="row">
+          <div class="col-md-2 col-sm-6">
+            <button type="submit" class="btn btn-success" name="hyvaksy" value="hyvaksy" onclick="hyvaksy()">
+              Hyväksy
+            </button>
+            <button type="submit" class="btn btn-danger" name="hylkaa" value="hylkaa">
+              Hylkää
+            </button>
+          </div>
         </div>
       </div>
       <br>
-      <div class="row">
-        <div class="col-md-2 col-sm-6">
-          <button type="submit" class="btn btn-success">
-            Hyväksy
-          </button>
-          <button type="submit" class="btn btn-danger">
-            Hylkää
-          </button>
-        </div>
-      </div>
-    </div>
+    <?php endforeach; ?>
+
   </div>
   <!-- jQuery from Google API -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

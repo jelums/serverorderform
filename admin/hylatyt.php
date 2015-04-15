@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<?php
+
+require '../includes/functions.php';
+
+$conn = connect($config);
+
+if ( $conn ) {
+  $user = hylatyt('user', $conn);
+} else die('Tietokantaan ei saatu yhteyttä');
+
+$laskuri = 'laskuri';
+
+?>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -20,7 +33,7 @@
   <body>
   <div class="container">
     <ul class="nav nav-tabs">
-      <li role="presentation"><a href="uudet.php">Uudet tilaukset <span class="badge">2</span></a></li>
+      <li role="presentation"><a href="uudet.php">Uudet tilaukset <span class="badge"><?= $laskuri($user, $conn); ?></span></a></li>
       <li role="presentation"><a href="hyvaksytyt.php">Hyväksytyt tunnukset</a></li>
       <li role="presentation" class="active"><a href="hylatyt.php">Hylätyt tunnukset</a></li>
       <li role="presentation"><a href="poistetut.php">Poistetut tunnukset</a></li>
@@ -33,6 +46,9 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>
+                ID
+              </th>
               <th>
                 Etunimi
               </th>
@@ -55,110 +71,36 @@
           </thead>
           <tbody>
             <!-- Single order -->
+          <?php foreach($user as $row) : ?>
             <tr>
               <td>
-                Jesse
+                <?= $row['id']?>
               </td>
               <td>
-                Lumme
+                <?= $row['firstname']?>
               </td>
               <td>
-                s3luje00
+                <?= $row['surname']?>
               </td>
               <td>
-                TIK3KA
+                <?= $row['account']?>
               </td>
               <td>
-                24.03.2015
+                <?= $row['class']?>
+              </td>
+              <td>
+                <?= $row['date']?>
               </td>
               <td>
                 Jesse Lumme
               </td>
-            </tr>
-            <!-- Single order -->
-            <tr>
               <td>
-                Jesse
-              </td>
-              <td>
-                Lumme
-              </td>
-              <td>
-                s3luje00
-              </td>
-              <td>
-                TIK3KA
-              </td>
-              <td>
-                24.03.2015
-              </td>
-              <td>
-                Jesse Lumme
+                <button type="submit" class="btn btn-xs btn-danger">
+                  Poista
+                </button>
               </td>
             </tr>
-            <!-- Single order -->
-            <tr>
-              <td>
-                Jesse
-              </td>
-              <td>
-                Lumme
-              </td>
-              <td>
-                s3luje00
-              </td>
-              <td>
-                TIK3KA
-              </td>
-              <td>
-                24.03.2015
-              </td>
-              <td>
-                Jesse Lumme
-              </td>
-            </tr>
-            <!-- Single order -->
-            <tr>
-              <td>
-                Jesse
-              </td>
-              <td>
-                Lumme
-              </td>
-              <td>
-                s3luje00
-              </td>
-              <td>
-                TIK3KA
-              </td>
-              <td>
-                24.03.2015
-              </td>
-              <td>
-                Jesse Lumme
-              </td>
-            </tr>
-            <!-- Single order -->
-            <tr>
-              <td>
-                Jesse
-              </td>
-              <td>
-                Lumme
-              </td>
-              <td>
-                s3luje00
-              </td>
-              <td>
-                TIK3KA
-              </td>
-              <td>
-                24.03.2015
-              </td>
-              <td>
-                Jesse Lumme
-              </td>
-            </tr>
+          <?php endforeach; ?>
           </tbody>
         </table>
       </div>
