@@ -12,8 +12,6 @@ if ( $conn ) {
 }
 require 'includes/register.php';
 
-// grab recaptcha library
-// require_once "recaptchalib.php";
 ?>
 
 <html>
@@ -117,7 +115,7 @@ require 'includes/register.php';
       <!-- Terms & Conditions -->
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
-          <a href="#ehdot" class="fancybox">Käyttöehdot</a>
+          <a href="#ehdot" class="fancybox"><h3>Käyttöehdot</h3></a>
           <div id="ehdot" style="display:none;width:300px;">
             <h3>Ohjeet</h3>
             <p>
@@ -138,12 +136,13 @@ require 'includes/register.php';
       </div>
       <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12">
-          <p><input type="checkbox" id="agree" name="agree"> Olen lukenut ylläesitetyt ehdot ja sitoudun käyttämään palvelinta niiden mukaisesti</p>
+          <p><input type="checkbox" id="agree" name="agree"> Vakuutan että olen lukenut ylläesitetyt ehdot ja sitoudun käyttämään palvelinta niiden mukaisesti</p>
           <p class="help-block"><?php echo $termsErr;?></p>
         </div>
       </div>
-      <!--<div class="row">
-        <div class="g-recaptcha col-md-2 col-md-offset-4 col-sm-12" data-sitekey="6LcePAATAAAAAGPRWgx90814DTjgt5sXnNbV5WaW"></div>
+      <!-- Recaptcha Google
+      <div class="row">
+        <div class="g-recaptcha col-md-2 col-md-offset-4 col-sm-12" data-sitekey="6LdWagUTAAAAADQjAjIZRW68LLkY_Tz-9sFqm8zi"></div>
       </div> -->
       <!-- Submit button -->
       <div class="row">
@@ -173,12 +172,12 @@ require 'includes/register.php';
     }
   });
   </script>
-  <!-- jQuery Validate
+  <!-- jQuery Validate -->
   <script src="js/formvalidate.js"></script>
   <script src="js/jquery.validate.js"></script>
   <script src="js/messages_fi.js"></script>
-  <script src="js/additional-methods.js"></script>-->
+  <script src="js/additional-methods.js"></script>
   <!-- Google nocaptcha recaptcha -->
-  <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
+  <script src='https://www.google.com/recaptcha/api.js'></script>
   </body>
 </html>

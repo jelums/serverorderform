@@ -7,7 +7,20 @@ $firstnameErr = $surnameErr = $accountErr = $classErr = $messageErr = $termsErr 
 $firstname = $surname = $account = $class = $successMessage = "";
 $errors = 0;
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+  //require_once('recaptchalib.php');
+  //$privatekey = "xxx";
+  //$resp = recaptcha_check_answer ($privatekey,
+  //$_SERVER["REMOTE_ADDR"],
+  //$_POST["recaptcha_challenge_field"],
+  //$_POST["recaptcha_response_field"]);
+  //if (!$resp->is_valid) {
+    // What happens when the CAPTCHA was entered incorrectly
+  //  die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
+  //  "(reCAPTCHA said: " . $resp->error . ")");
+  //} else {
 
     if (empty($_POST["firstname"])) {
       $firstnameErr =
@@ -51,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         Vain kirjaimet,numerot ja välilyönnit ovat sallittuja
         </div>';
         $errors = 1;
-
       }
     }
 
@@ -130,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     {
       return false;
     }
-
+//}
 
   query("INSERT INTO user(account, email, firstname, surname, class, status, isadmin) VALUES(:account, :email, :firstname, :surname, :class, 0, 0)",
         array('account'   => $account,

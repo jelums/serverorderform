@@ -8,6 +8,7 @@ $config = array(
   'password' => ''
 );
 
+
 // Connect to the Database
 function connect($config)
 {
@@ -38,6 +39,7 @@ function uudet($tableName, $conn)
   }
 }
 
+
 // Get Accepter orders
 function hyvaksytyt($tableName, $conn)
 {
@@ -50,6 +52,7 @@ function hyvaksytyt($tableName, $conn)
     return false;
   }
 }
+
 
 // Get discarded orders
 function hylatyt($tableName, $conn)
@@ -64,6 +67,7 @@ function hylatyt($tableName, $conn)
   }
 }
 
+
 // Get deletet orders
 function poistetut($tableName, $conn)
 {
@@ -77,13 +81,14 @@ function poistetut($tableName, $conn)
   }
 }
 
+
 // Basic Query
 function query($query, $bindings, $conn)
 {
     $stmt = $conn->prepare($query);
     $stmt->execute($bindings);
-
 }
+
 
 // Count the new orders
 function laskuri($table, $conn){
@@ -92,12 +97,6 @@ function laskuri($table, $conn){
 
 }
 
-// Accept the order
-function hyvaksy($query, $bindings, $conn)
-{
-  $stmt = $conn->query("UPDATE FROM user SET status VALUES 0");
-  $stmt->execute($bindings);
-}
 
 // Test input data
 function test_input($data) {
